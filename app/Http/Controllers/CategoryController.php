@@ -135,7 +135,7 @@ class CategoryController extends Controller
             $category->$category_name_key = $name;
             $category->schedule_type = $schedule_type;
             $category->schedule = $schedule;
-            $category->divider_img_size = $divider_img_size;
+
 
             if($schedule_type == 'time')
             {
@@ -181,6 +181,8 @@ class CategoryController extends Controller
             // Parent Category
             if($category_type == 'parent_category')
             {
+                $category->divider_img_size = $divider_img_size;
+
                 if(isset($request->parent_cat) && !empty($request->parent_cat) && $request->parent_cat == 0)
                 {
                     $category->parent_category = 1;
@@ -919,25 +921,26 @@ class CategoryController extends Controller
                                 $html .= '</div>';
                             $html .= '</div>';
 
-                            // Crop Size
-                            $html .= '<div class="crop_size crop_size_div">';
-                                $html .= '<label class="form-label" for="crop_size">'.__('Image Size').'</label>';
-                                $html .= '<select name="crop_size" id="crop_size" class="form-select mb-3">';
-                                    $html .= '<option value="400"';
-                                        if($crop_size == 400)
-                                        {
-                                            $html .= 'selected';
-                                        }
-                                    $html .='>400*400</option>';
-                                    $html .= '<option value="600"';
-                                        if($crop_size == 600)
-                                        {
-                                            $html .= 'selected';
-                                        }
-                                $html .= '>400*600</option>';
-                                $html .= '</select>';
-                            $html .= '</div>';
-
+                            if($category->category_type == 'parent_category'){
+                                // Crop Size
+                                $html .= '<div class="crop_size crop_size_div">';
+                                    $html .= '<label class="form-label" for="crop_size">'.__('Image Size').'</label>';
+                                    $html .= '<select name="crop_size" id="crop_size" class="form-select mb-3">';
+                                        $html .= '<option value="400"';
+                                            if($crop_size == 400)
+                                            {
+                                                $html .= 'selected';
+                                            }
+                                        $html .='>400*400</option>';
+                                        $html .= '<option value="600"';
+                                            if($crop_size == 600)
+                                            {
+                                                $html .= 'selected';
+                                            }
+                                    $html .= '>400*600</option>';
+                                    $html .= '</select>';
+                                $html .= '</div>';
+                            }
                             // Images
                             $html .= '<div class="row mb-3">';
                                 $html .= '<div class="col-md-12" id="edit_images_div">';
@@ -1385,6 +1388,8 @@ class CategoryController extends Controller
                 // Parent Category
                 if($category_type == 'parent_category')
                 {
+                    $category->divider_img_size = $divider_img_size;
+
                     if(isset($request->parent_cat) && !empty($request->parent_cat) && $request->parent_cat == 0)
                     {
                         $category->parent_category = 1;
@@ -1471,7 +1476,7 @@ class CategoryController extends Controller
                         }
                     }
                 }
-                $category->divider_img_size = $divider_img_size;
+
                 $category->updated_at = Carbon::now();
                 $category->update();
             }
@@ -1485,6 +1490,7 @@ class CategoryController extends Controller
         }
         catch (\Throwable $th)
         {
+            dd($th);
             return response()->json([
                 'success' => 0,
                 'message' => "Internal Server Error!",

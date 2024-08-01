@@ -2055,6 +2055,7 @@
                     $('#editCategoryModal .chk_page_styles').hide();
                     $('#editCategoryModal .cat_div').hide();
                     $('#editCategoryModal .img-upload-label').html('Upload Image in (700*400) Dimensions');
+                    $('#editCategoryModal .crop_size_div').hide();
                 }
                 else if(cat_type == 'product_category')
                 {
@@ -2066,6 +2067,7 @@
                     $('#editCategoryModal .chk_page_styles').hide();
                     $('#editCategoryModal .cat_div').hide();
                     $('#editCategoryModal .img-upload-label').html('Upload Image in (400*400) Dimensions');
+                    $('#editCategoryModal .crop_size_div').hide();
                 }
                 else if(cat_type == 'link')
                 {
@@ -2076,6 +2078,7 @@
                     $('#editCategoryModal .pdf').hide();
                     $('#editCategoryModal .chk_page_styles').hide();
                     $('#editCategoryModal .cat_div').hide();
+                    $('#editCategoryModal .crop_size_div').hide();
                 }
                 else if(cat_type == 'gallery')
                 {
@@ -2087,6 +2090,7 @@
                     $('#editCategoryModal .chk_page_styles').hide();
                     $('#editCategoryModal .cat_div').hide();
                     $('#editCategoryModal .img-upload-label').html('Upload Image in (500*500) Dimensions');
+                    $('#editCategoryModal .crop_size_div').hide();
                 }
                 else if(cat_type == 'check_in')
                 {
@@ -2097,6 +2101,7 @@
                     $('#editCategoryModal .pdf').hide();
                     $('#editCategoryModal .chk_page_styles').show();
                     $('#editCategoryModal .cat_div').hide();
+                    $('#editCategoryModal .crop_size_div').hide();
                 }
                 else if(cat_type == 'parent_category')
                 {
@@ -2108,6 +2113,14 @@
                     $('#editCategoryModal .chk_page_styles').hide();
                     $('#editCategoryModal .cat_div').show();
                     $('#editCategoryModal .img-upload-label').html('Upload Image in (400*400) Dimensions');
+                    $('#categories_div input[name="parent_cat"]').change(function() {
+                        if ($('#root').is(':checked')) {
+                                $('#'+formID+' .crop_size_div').show();
+                            } else if ($('#pcat_0').is(':checked')) {
+                                $('#'+formID+' .crop_size_div').hide();
+                            }
+                        });
+                    $('#'+formID+' .crop_size_div').show();
                 }
                 else if(cat_type == 'pdf_page')
                 {
@@ -2118,6 +2131,7 @@
                     $('#editCategoryModal .pdf').show();
                     $('#editCategoryModal .chk_page_styles').hide();
                     $('#editCategoryModal .cat_div').hide();
+                    $('#editCategoryModal .crop_size_div').hide();
                 }
             }
 
