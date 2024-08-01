@@ -511,7 +511,7 @@ header.header_preview {
 .cover-img .cube_cover_slider,
 .cover_single_img {
     height: 100vh;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 .cover-img .swiper-slide img {
     /* height: calc(100vh - 20px); */
