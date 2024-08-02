@@ -2533,24 +2533,6 @@
                                                                         width="100%">
                                                                 @endif
                                             </div>
-                                                <!-- <div class="cube_cover_slider">
-                                                    <div class="swiper-container h-100 position-relative">
-                                                    <div class="swiper-wrapper">
-                                                            @if ($intro_file_ext == 'mp4' || $intro_file_ext == 'mov')
-                                                                <div class="swiper-slide">
-                                                                <video
-                                                                        src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/intro_icons/' . $shop_settings['shop_intro_icon']) }}"
-                                                                        width="100%" class="h-100" autoplay muted loop>
-                                                                    </video>
-                                                                </div>
-                                                            @else
-
-                                                                <div class="swiper-slide" style="background-image: url('{{ asset('public/client_uploads/shops/' . $shop_slug . '/intro_icons/' . $shop_settings['shop_intro_icon']) }}')">
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -2981,24 +2963,6 @@
                                                                     width="100%">
                                                             @endif
                                                         </div>
-                                                        <!-- <div class="cube_cover_slider">
-                                                            <div class="swiper-container h-100 position-relative">
-                                                            <div class="swiper-wrapper">
-                                                                    @if ($intro_file_ext == 'mp4' || $intro_file_ext == 'mov')
-                                                                        <div class="swiper-slide">
-                                                                        <video
-                                                                                src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/intro_icons/' . $shop_settings['shop_intro_icon']) }}"
-                                                                                width="100%" class="h-100" autoplay muted loop>
-                                                                            </video>
-                                                                        </div>
-                                                                    @else
-
-                                                                        <div class="swiper-slide" style="background-image: url('{{ asset('public/client_uploads/shops/' . $shop_slug . '/intro_icons/' . $shop_settings['shop_intro_icon']) }}')">
-                                                                        </div>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
