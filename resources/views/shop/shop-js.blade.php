@@ -689,14 +689,22 @@
             contentType: false,
             cache: false,
             processData: false,
+            beforeSend: function(){
+                $('#call_waiter_load_btn').show();
+                $('#call_waiter_btn').hide();
+            },
             success: function(response) {
                 if (response.success == 1) {
-                    $('#callWaiterForm').trigger("reset");
-                    $('#callWaiterModal').modal('hide');
-                    // $('#item_review').val('');
-                    // $("input[name='rating']").removeAttr('checked');
-                    // $("#star3").prop('checked', true);
+                    $('#call_waiter_load_btn').hide();
+                    $('#call_waiter_btn').show();                   
                     toastr.success(response.message);
+                    setTimeout(() => {
+                        $('#callWaiterForm').trigger("reset");
+                        $('#callWaiterModal').modal('hide');
+                        // $('#item_review').val('');
+                        // $("input[name='rating']").removeAttr('checked');
+                        // $("#star3").prop('checked', true);
+                    }, 500);
                 } else {
                     toastr.error(response.message);
                     // $('#itemDetailsModal').modal('hide');

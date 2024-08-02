@@ -161,7 +161,8 @@ class WaiterController extends Controller
                         $html .='<div class="add_to_cart_box w-100">';
                          $html .='<div class="row justify-content-center">';
                                     $html .='<div class="col-6">';
-                                        $html .='<a class="btn call_waiter_submit_btn btn-success w-100" onclick="submitCallWaiter()">'.__('send').'</a>';
+                                        $html .='<a id="call_waiter_btn" class="btn call_waiter_submit_btn btn-success w-100" onclick="submitCallWaiter()">'.__('send').'</a>';
+                                        $html .='<button id="call_waiter_load_btn" class="btn call_waiter_submit_btn btn-success w-100" style="display:none;" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...</button>';
                                     $html .='</div>';
                          $html .='</div>';
                         $html .='</div>';
@@ -218,18 +219,30 @@ class WaiterController extends Controller
                 $tableNumber = $tables->table_name;
                 $staff_emails = $tables->staffs()->pluck('staffs.email')->toArray();
                 $staffs = $tables->staffs;
+                $table_room = $tableNumber;
             }else{
                 $rooms = ShopRoom::where('id',$request->room)->first();
                 $roomNumber = $rooms->room_no;
                 $staff_emails = $rooms->staffs()->pluck('staffs.email')->toArray();
                 $staffs = $rooms->staffs;
+                $table_room = $roomNumber;
             }
+
+            $table_room_text = ($request->location == 0) ? "Table Number $table_room" : "Room Number $table_room";
+
+            $items = [];
+            if ($waiter->order == 1) $items[] = "Order";
+            if ($waiter->water == 1) $items[] = "Water";
+            if ($waiter->pay_bill == 1) $items[] = "Pay Bill";
+            if ($waiter->pay_with_bill == 1) $items[] = "Pay With Card";
+            if ($waiter->other == 1) $items[] = "Other";
+            $items = "(" . implode(", ", $items) . ")";
 
             // Sent Message
             if(count($staffs) > 0){
                 foreach($staffs as $staff){
                     if(!empty($staff) && isset($staff->wp_number) && !empty($staff->wp_number)){
-                        $this->sendWhatsappMessage($staff);
+                        $this->sendWhatsappMessage($staff, $table_room_text, $items);
                     }
                 }
             }
@@ -258,7 +271,7 @@ class WaiterController extends Controller
                                 $message .= (($waiter->order == 1) ? 'Order, ' : '');
                                 $message .= (($waiter->water == 1) ? 'Water, ' : '');
                                 $message .= (($waiter->pay_bill == 1) ? 'Pay Bill, ' : '');
-                                $message .= (($waiter->pay_bill == 1) ? 'Pay With Card, ' : '');
+                                $message .= (($waiter->pay_with_bill == 1) ? 'Pay With Card, ' : '');
                                 $message .= (($waiter->other == 1) ? 'other' : '');
                                 $message = rtrim($message, ', '); // Remove trailing comma and space if any
                                 $message .= '</td>';
@@ -290,9 +303,13 @@ class WaiterController extends Controller
         }
     }
 
-    private function sendWhatsappMessage($staff) 
+    private function sendWhatsappMessage($staff, $table_room_text, $items) 
     {
         try {
+            $current_lang_code = (session()->has('locale')) ? session()->get('locale') : 'en';
+            $current_lang_code = (!empty($current_lang_code) && $current_lang_code == 'el') ? 'el' : 'en';
+            $current_template = ($current_lang_code == 'en') ? 'staff_notification' : 'staff_notification_greek';
+
             $host = '2v8qqz.api.infobip.com';
             $apiKey = '4a966396254536dcd8e8dd240f3ae5a7-a642f3b1-bcbb-4af0-84de-f9627f009796';
             $configuration = new Configuration(
@@ -301,19 +318,19 @@ class WaiterController extends Controller
             );
 
             $phone = str_replace('+', '', $staff->wp_number);
-            $name = $staff->name;
+            $name = $staff->name ?? "Demo";
             
             $textMessage = new WhatsAppMessage(
-                from: '447860099299',
+                from: '306941484222',
                 to: $phone,
                 content: new WhatsAppTemplateContent(
-                    templateName: 'message_test',
+                    templateName: $current_template,
                     templateData: new WhatsAppTemplateDataContent(
                     body: new WhatsAppTemplateBodyContent(
-                        placeholders: [$name]
+                        placeholders: [$name, $items, $table_room_text]
                     )
                 ),
-                language: 'en'
+                language: $current_lang_code
             ));
 
             $bulkMessage = new WhatsAppBulkMessage(messages: [$textMessage]);
