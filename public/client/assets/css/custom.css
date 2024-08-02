@@ -20,7 +20,7 @@ html {
 
 header.header_preview {
     width: 100%;
-    z-index: 99;
+    z-index: 999;
     background: transparent;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -508,16 +508,17 @@ header.header_preview {
     z-index: 999;
 }
 
-.cover-img .cube_cover_slider,
-.cover_single_img {
+.cover-img .cube_cover_slider,.cover_single_img {
     height: 100vh;
-    padding: 20px 0;
+    padding: 10px 40px;
 }
+
 .cover-img .swiper-slide img {
     /* height: calc(100vh - 20px); */
     height: 100vh;
     width: 100%;
 }
+
 .cover-img .swiper-slide {
     background-repeat: no-repeat;
     background-size: cover;
@@ -2320,6 +2321,11 @@ header.header_preview {
 .csm-review-modal .form-control {
     border-radius: 30px !important;
 }
+@media screen and (min-width: 1400px){
+    .cover-img .cube_cover_slider, .cover_single_img{
+        padding: 10px 0 !important;
+    }
+}
 
 @media (max-width: 991px) {
     .sec_main .menu_list {
@@ -2330,10 +2336,6 @@ header.header_preview {
 
     .cover-img img {
         width: 100%;
-    }
-
-    .cover-img {
-        height: 100vh !important;
     }
 
     .layout_1 .side_header {
@@ -2648,10 +2650,10 @@ header.header_preview {
 
     /* cover */
 
-    .cover-img .cube_cover_slider,
-    .cover_single_img{
-        padding: 10px;
+    .cover-img .cube_cover_slider,.cover_single_img{
+        padding:10px;
     }
+
 }
 
 @media screen and (max-width: 766px) and (min-width: 540px) {
@@ -3248,8 +3250,7 @@ button.gm-ui-hover-effect {
     .flipster__item__content {
         transform-origin: 50% 100%;
         box-reflect: below 0 -webkit-gradient(linear, left bottom, left top, color-stop(0.05, rgba(255, 255, 255, 0.12)), color-stop(0.2, transparent));
-        -webkit-box-reflect: below 0 -webkit-gradient(linear, left bottom, left
-                    top, color-stop(0.05, rgba(255, 255, 255, 0.12)), color-stop(0.2, transparent));
+        -webkit-box-reflect: below 0 -webkit-gradient(linear, left bottom, lefttop, color-stop(0.05, rgba(255, 255, 255, 0.12)), color-stop(0.2, transparent));
     }
 
     .flipster__item__content img:only-child {
