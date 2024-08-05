@@ -376,7 +376,7 @@
                                                             <a  class="waiter_notification" onclick="openWaiter({{ $shop_details['id'] }})">
                                                                 <i class="fa-solid fa-bell"></i>
                                                             </a>
-                                                        </li>                                                        
+                                                        </li>
                                                     @endif
                                                     @endif
                                                     @if(isset($package_permissions['grading']) && !empty($package_permissions['grading']) && $package_permissions['grading'] == 1 && $total_grading > 0)
@@ -441,7 +441,7 @@
                                                                 <i class="fa-solid fa-bell"></i>
                                                             </a>
                                                         </li>
-                                                        
+
                                                     @endif
                                                     @endif
                                                     @if(isset($package_permissions['grading']) && !empty($package_permissions['grading']) && $package_permissions['grading'] == 1 && $total_grading > 0)
@@ -671,7 +671,7 @@
                                                         </div>
                                                     </li> -->
                                                     @if(isset($package_permissions['bell']) && $package_permissions['bell'] == 1 && $waiter_call_status == 1)
-                                                    @if ($table_enable_status == 1 || $room_enable_status == 1)                                                        
+                                                    @if ($table_enable_status == 1 || $room_enable_status == 1)
                                                         <li>
                                                             <a  class="waiter_notification" onclick="openWaiter({{ $shop_details['id'] }})">
                                                                 <i class="fa-solid fa-bell"></i>
@@ -900,7 +900,7 @@
                                             </li> -->
                                             @if(isset($package_permissions['bell']) && $package_permissions['bell'] == 1 && $waiter_call_status == 1)
                                             @if ($table_enable_status == 1 || $room_enable_status == 1)
-                                                
+
                                                 <li>
                                                     <a  class="waiter_notification" onclick="openWaiter({{ $shop_details['id'] }})">
                                                         <i class="fa-solid fa-bell"></i>
@@ -1075,7 +1075,7 @@
 
                 <div class="cart_notification">
                 @if(isset($package_permissions['bell']) && $package_permissions['bell'] == 1 && $waiter_call_status == 1)
-                    @if ($table_enable_status == 1 || $room_enable_status == 1)                        
+                    @if ($table_enable_status == 1 || $room_enable_status == 1)
                         <a  class="waiter_notification" onclick="openWaiter({{ $shop_details['id'] }})">
                             <i class="fa-solid fa-bell"></i>
                         </a>
@@ -1162,7 +1162,7 @@
                                     class="fa-solid fa-arrow-left"></i></a>
                         </div>
                         @if(isset($package_permissions['bell']) && $package_permissions['bell'] == 1 && $waiter_call_status == 1)
-                            @if ($table_enable_status == 1 || $room_enable_status == 1)                                
+                            @if ($table_enable_status == 1 || $room_enable_status == 1)
                                 <a  class="waiter_notification" onclick="openWaiter({{ $shop_details['id'] }})">
                                                 <i class="fa-solid fa-bell"></i>
                                             </a>
@@ -1215,7 +1215,7 @@
                             <div class="barger_menu_list">
                                 <ul>
                                 @if(isset($package_permissions['bell']) && $package_permissions['bell'] == 1 && $waiter_call_status == 1)
-                                @if ($table_enable_status == 1 || $room_enable_status == 1)                                    
+                                @if ($table_enable_status == 1 || $room_enable_status == 1)
                                     <li>
                                         <a  class="waiter_notification" onclick="openWaiter({{ $shop_details['id'] }})">
                                             <i class="fa-solid fa-bell"></i>
@@ -1447,7 +1447,11 @@
                                         @endif
                                     </div>
                                     <div class="col-md-12 mt-3 text-center">
-                                        <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                        {{-- <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>  --}}
+
+                                        <div class="sub_cat_title">
+                                            <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                        </div>
                                     </div>
                                     <div class="col-md-12 mt-3">
                                         {!! $cat_details->$description_key !!}
@@ -1461,8 +1465,9 @@
                             <div class="gallary-details">
                                 <div class="row">
                                     <div class="col-md-12 mb-3 text-center">
-                                        <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
-                                    </div>
+                                        <div class="sub_cat_title">
+                                            <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                        </div>
                                     @if (count($gallery_images) > 0)
                                         @foreach ($gallery_images as $album)
                                             @if (!empty($album->image) && file_exists('public/client_uploads/shops/' . $shop_slug . '/categories/' . $album->image))
@@ -1493,7 +1498,9 @@
                             <div class="pdf-view">
                                 <div class="row">
                                     <div class="col-md-12 mb-3 text-center">
-                                        <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                        <div class="sub_cat_title">
+                                            <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                        </div>
                                     </div>
                                     <div class="col-md-12" id="canvas_container">
                                     </div>
@@ -1503,7 +1510,9 @@
                             <div class="check-in-page">
                                 <div class="row justify-content-center">
                                     <div class="col-md-12 mb-3 text-center">
-                                        <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                        <div class="sub_cat_title">
+                                            <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                        </div>
                                         <div class="check-in-page-desc">
                                             {!! $cat_details->$description_key !!}
                                         </div>
@@ -1791,8 +1800,9 @@
             </div>
         </footer>
 
-        <a class="back_bt" onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i
-                class="fa-solid fa-chevron-left"></i></a>
+      {{-- <a class="back_bt" onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i
+        class="fa-solid fa-chevron-left"></i></a> --}}
+
     @elseif($layout == 'layout_2')
         <section class="category_section_inr">
 
@@ -1862,7 +1872,11 @@
                                 @endif
                             </div>
                             <div class="col-md-12 mt-3 text-center">
-                                <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                               {{-- <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3> --}}
+
+                                <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                             </div>
                             <div class="col-md-12 mt-3">
                                 {!! $cat_details->$description_key !!}
@@ -1876,7 +1890,9 @@
                     <div class="gallary-details">
                         <div class="row">
                             <div class="col-md-12 mb-3 text-center">
-                                <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                             </div>
                             @if (count($gallery_images) > 0)
                                 @foreach ($gallery_images as $album)
@@ -1908,7 +1924,9 @@
                     <div class="pdf-view">
                         <div class="row">
                             <div class="col-md-12 mb-3 text-center">
-                                <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                             </div>
                             <div class="col-md-12" id="canvas_container">
                             </div>
@@ -1918,7 +1936,9 @@
                     <div class="check-in-page">
                         <div class="row justify-content-center">
                             <div class="col-md-12 mb-3 text-center">
-                                <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                                 <div class="check-in-page-desc">
                                     {!! $cat_details->$description_key !!}
                                 </div>
@@ -2226,7 +2246,11 @@
                                     @endif
                                 </div>
                                 <div class="col-md-12 mt-3 text-center">
-                                    <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                  {{-- <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3> --}}
+
+                                    <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     {!! $cat_details->$description_key !!}
@@ -2240,7 +2264,9 @@
                         <div class="gallary-details">
                             <div class="row">
                                 <div class="col-md-12 mb-3 text-center">
-                                    <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                    <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                                 </div>
                                 @if (count($gallery_images) > 0)
                                     @foreach ($gallery_images as $album)
@@ -2268,7 +2294,9 @@
                         <input type="hidden" name="pdf_url" id="pdf_url" value="{{ $pdf_file }}">
                         <div class="pdf-view">
                             <div class="title text-center">
-                                <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                <div class="sub_cat_title">
+                                    <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12" id="canvas_container">
@@ -2279,7 +2307,9 @@
                         <div class="check-in-page">
                             <div class="row justify-content-center">
                                 <div class="col-md-12 mb-3 text-center">
-                                    <h3>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</h3>
+                                    <div class="sub_cat_title">
+                                        <a onclick="homePage('{{ $shop_details['shop_slug'] }}')"><i class="fa-solid fa-circle-chevron-left me-2"></i><span>{{ isset($cat_details->$name_key) ? $cat_details->$name_key : '' }}</span></a>
+                                    </div>
                                     <div class="check-in-page-desc">
                                         {!! $cat_details->$description_key !!}
                                     </div>
