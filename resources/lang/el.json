@@ -721,6 +721,9 @@
     "Grid View":"Πλέγμα",
     "List View":"Λίστα",
     "Filter by Category":"Φιλτράρισμα ανά Κατηγορία",
-    "Search":"Αναζήτηση"
+    "Search":"Αναζήτηση",
+
+    "Table Number":"Αριθμός πίνακα",
+    "Room Number":"Αριθμός δωματίου"
 }
 

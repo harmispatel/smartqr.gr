@@ -61,7 +61,7 @@ class WaiterController extends Controller
                                     }
                                     $html .='</select>';
                             $html .='</div>';
-    
+
                             $html .='<div class="form-group table-dropdown d-none">';
                                     $html .='<select name="table" id="table" class="form-select">';
                                     $html .= '<option value="">'. __('Τable Νumber').'</option>';
@@ -228,14 +228,14 @@ class WaiterController extends Controller
                 $table_room = $roomNumber;
             }
 
-            $table_room_text = ($request->location == 0) ? "Table Number $table_room" : "Room Number $table_room";
+            $table_room_text = ($request->location == 0) ? __('Table Number') . ' ' . $table_room : __('Room Number') . ' ' . $table_room;
 
             $items = [];
-            if ($waiter->order == 1) $items[] = "Order";
-            if ($waiter->water == 1) $items[] = "Water";
-            if ($waiter->pay_bill == 1) $items[] = "Pay Bill";
-            if ($waiter->pay_with_bill == 1) $items[] = "Pay With Card";
-            if ($waiter->other == 1) $items[] = "Other";
+            if ($waiter->order == 1) $items[] = __('Order');
+            if ($waiter->water == 1) $items[] = __('Water');
+            if ($waiter->pay_bill == 1) $items[] = __('Pay Bill');
+            if ($waiter->pay_with_bill == 1) $items[] = __('Pay With Card');
+            if ($waiter->other == 1) $items[] = __('Other');
             $items = "(" . implode(", ", $items) . ")";
 
             // Sent Message
@@ -303,12 +303,12 @@ class WaiterController extends Controller
         }
     }
 
-    private function sendWhatsappMessage($staff, $table_room_text, $items) 
+    private function sendWhatsappMessage($staff, $table_room_text, $items)
     {
         try {
             $current_lang_code = (session()->has('locale')) ? session()->get('locale') : 'en';
             $current_lang_code = (!empty($current_lang_code) && $current_lang_code == 'el') ? 'el' : 'en';
-            $current_template = ($current_lang_code == 'en') ? 'staff_notification' : 'staff_notification_greek';
+            $current_template = ($current_lang_code == 'en') ? 'new_staff_notification' : 'new_staff_notification_second';
 
             $host = '2v8qqz.api.infobip.com';
             $apiKey = '4a966396254536dcd8e8dd240f3ae5a7-a642f3b1-bcbb-4af0-84de-f9627f009796';
@@ -319,7 +319,7 @@ class WaiterController extends Controller
 
             $phone = str_replace('+', '', $staff->wp_number);
             $name = $staff->name ?? "Demo";
-            
+
             $textMessage = new WhatsAppMessage(
                 from: '306941484222',
                 to: $phone,
