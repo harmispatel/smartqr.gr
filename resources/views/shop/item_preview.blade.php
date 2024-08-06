@@ -2559,16 +2559,19 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <div class="category_title devider text-center">
-                                        @if (!empty($all_items[0]['image']) && file_exists('public/client_uploads/shops/' . $shop_slug . '/items/' . $all_items[0]['image']))
-                                            <div class="category_title_img img-devider">
-                                                <img src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/items/' . $all_items[0]['image']) }}" style="width: {{ $all_items[0]['divider_img_size'] }}px;">
+                                    @if ($item_devider == 1)
+                                        <div class="category_title devider text-center">
+                                            @if (!empty($all_items[0]['image']) && file_exists('public/client_uploads/shops/' . $shop_slug . '/items/' . $all_items[0]['image']))
+                                                <div class="category_title_img img-devider">
+                                                    <img src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/items/' . $all_items[0]['image']) }}" style="width: {{ $all_items[0]['divider_img_size'] }}px;">
+                                                </div>
+                                            @endif
+
+                                            <div class="category_title_name">
+                                                <h3>{{ isset($all_items[0][$name_key]) && !empty($all_items[0][$name_key]) ? $all_items[0][$name_key] : '' }}</h3>
                                             </div>
-                                        @endif
-                                        <div class="category_title_name">
-                                            <h3>{{ isset($all_items[0][$name_key]) && !empty($all_items[0][$name_key]) ? $all_items[0][$name_key] : '' }}</h3>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             @else
                                 <div class="category_name_title">
@@ -2846,9 +2849,9 @@
                                                     <div class="col-md-12">
                                                         <div class="category_title devider">
                                                             @if (!empty($item['image']) && file_exists('public/client_uploads/shops/' . $shop_slug . '/items/' . $item['image']))
-                                                                <div class="category_title_img img-devider text-center">
-                                                                    <img src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/items/' . $item['image']) }}" style="width: {{ $item['divider_img_size'] }}px;">
-                                                                </div>
+                                                                    <div class="category_title_img img-devider text-center">
+                                                                        <img src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/items/' . $item['image']) }}" style="width: {{ $item['divider_img_size'] }}px;">
+                                                                    </div>
                                                             @endif
                                                             <div class="category_title_name">
                                                                 <h3>{{ isset($item[$name_key]) && !empty($item[$name_key]) ? $item[$name_key] : '' }}</h3>
@@ -2931,16 +2934,18 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <div class="category_title devider text-center">
-                                            @if (!empty($tag_items[0]['image']) && file_exists('public/client_uploads/shops/' . $shop_slug . '/items/' . $tag_items[0]['image']))
-                                                <div class="category_title_img img-devider">
-                                                    <img src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/items/' . $tag_items[0]['image']) }}" style="width: {{ $tag_items[0]['divider_img_size'] }}px;">
+                                        @if ($item_devider == 1)
+                                            <div class="category_title devider text-center">
+                                                @if (!empty($tag_items[0]['image']) && file_exists('public/client_uploads/shops/' . $shop_slug . '/items/' . $tag_items[0]['image']))
+                                                    <div class="category_title_img img-devider">
+                                                        <img src="{{ asset('public/client_uploads/shops/' . $shop_slug . '/items/' . $tag_items[0]['image']) }}" style="width: {{ $tag_items[0]['divider_img_size'] }}px;">
+                                                    </div>
+                                                @endif
+                                                <div class="category_title_name">
+                                                    <h3>{{ isset($tag_items[0][$name_key]) && !empty($tag_items[0][$name_key]) ? $tag_items[0][$name_key] : '' }}</h3>
                                                 </div>
-                                            @endif
-                                            <div class="category_title_name">
-                                                <h3>{{ isset($tag_items[0][$name_key]) && !empty($tag_items[0][$name_key]) ? $tag_items[0][$name_key] : '' }}</h3>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 @else
                                     <div class="category_name_title">
