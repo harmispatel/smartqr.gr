@@ -220,22 +220,25 @@ class WaiterController extends Controller
                 $staff_emails = $tables->staffs()->pluck('staffs.email')->toArray();
                 $staffs = $tables->staffs;
                 $table_room = $tableNumber;
+                $areaText = $tables->shop_area ?? "";
             }else{
                 $rooms = ShopRoom::where('id',$request->room)->first();
                 $roomNumber = $rooms->room_no;
                 $staff_emails = $rooms->staffs()->pluck('staffs.email')->toArray();
                 $staffs = $rooms->staffs;
                 $table_room = $roomNumber;
+                $areaText = $rooms->floor ?? "";
             }
 
-            $table_room_text = ($request->location == 0) ? __('Table Number') . ' ' . $table_room : __('Room Number') . ' ' . $table_room;
+            $table_room_text = ($request->location == 0) ? __('Table') . ': ' . $table_room .', '.__('Shop Area').': ' .$areaText : __('Room') . ': ' . $table_room . ', '.__('Floor').': '.$areaText;
+            $message = $request->message ?? "";
 
             $items = [];
             if ($waiter->order == 1) $items[] = __('Order');
             if ($waiter->water == 1) $items[] = __('Water');
             if ($waiter->pay_bill == 1) $items[] = __('Pay Bill');
             if ($waiter->pay_with_bill == 1) $items[] = __('Pay With Card');
-            if ($waiter->other == 1) $items[] = __('Other');
+            if ($waiter->other == 1) $items[] = __('Other').': '.$message;
             $items = "(" . implode(", ", $items) . ")";
 
             // Sent Message
